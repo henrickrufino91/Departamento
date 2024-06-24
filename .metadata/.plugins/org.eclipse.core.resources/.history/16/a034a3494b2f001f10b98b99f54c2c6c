@@ -1,0 +1,54 @@
+package br.com.projeto.departamento.service;
+
+
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+
+@Service
+public class DepartamentoService {
+
+	@Autowired
+	private FuncionarioRepository funcionarioRepository;
+	
+	
+	
+	
+	public Funcionario inserir(Funcionario funcionario) {
+		
+		return funcionarioRepository.save(funcionario);
+	}
+	
+	public List<Funcionario> listarFuncionarios(){
+		
+		return funcionarioRepository.findAll();
+	}
+	
+	public Funcionario listarPorId(Integer codigo) {
+		
+		return funcionarioRepository.findById(codigo).get();
+	}
+	
+	
+	
+	public void remover(Funcionario funcionario) {
+		
+		funcionarioRepository.delete(funcionario);
+	}
+	
+	
+	public FuncionarioDTO listar(Integer codigo) {
+		
+		Funcionario funcionario = funcionarioRepository.getReferenceById(codigo) ;
+		
+		FuncionarioDTO dto = new FuncionarioDTO(funcionario);
+		
+		return dto;
+	}
+	
+	
+}

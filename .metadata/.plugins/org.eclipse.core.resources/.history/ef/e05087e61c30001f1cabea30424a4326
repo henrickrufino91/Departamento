@@ -1,0 +1,107 @@
+package br.com.projeto.departamento.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import org.springframework.web.bind.annotation.PostMapping;
+
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.projeto.departamento.model.Departamento;
+
+import br.com.projeto.departamento.service.DepartamentoService;
+
+
+
+@RestController
+
+public class DepartamentoController {
+
+	
+	
+	@Autowired
+	private DepartamentoService departamentoService;
+	
+	
+	
+	@GetMapping(value = "/novoDepartamento")
+	public ModelAndView novo() {
+		
+		ModelAndView mv = new ModelAndView("novoDepartamento");
+		mv.addObject("departamento", new Departamento());
+				
+		return mv;
+	}
+	
+	@PostMapping(value = "/salvarDepartamento")
+	public ModelAndView novo(@Valid Departamento departamento) {
+		
+		try {
+			
+			ModelAndView mv = new ModelAndView("redirect:\novoDepartamento");
+			mv.addObject("departamento", departamento);
+			departamentoService.inserir(departamento);			
+			return mv;
+			
+		} catch (Exception e) {
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("msg", "Erro ao inserir departamento!");
+			return mv;
+		}
+		
+	}
+	
+	
+	@GetMapping("/removerDepartamento")
+    public ModelAndView remover(@RequestParam Integer codigo){
+        
+		ModelAndView mv = new ModelAndView("listarDepartamentos");
+		
+		Departamento departamento = departamentoService.listarPorId(codigo);
+		departamentoService.remover(departamento);
+		
+        return mv;
+    }
+	
+	
+	@GetMapping("/editarDepartamento")
+    public ModelAndView editar(@RequestParam Integer codigo){
+        
+        ModelAndView mv = new ModelAndView("editarDepartamento");
+    
+        Departamento departamento = departamentoService.listarPorId(codigo);
+        mv.addObject("departamento",  departamento);
+               
+        return mv;
+   
+    }
+	
+	
+	@GetMapping("/listarDepartamentos")
+    public ModelAndView listar(){
+        
+        ModelAndView mv = new ModelAndView("listarDepartamentos");
+        
+        mv.addObject("departamentos",  departamentoService.listarDepartamentos());
+        mv.addObject("departamento",  new Departamento());
+        
+        return mv;
+   
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+}

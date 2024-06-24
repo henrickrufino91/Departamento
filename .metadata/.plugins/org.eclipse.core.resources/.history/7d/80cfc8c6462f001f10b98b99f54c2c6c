@@ -1,0 +1,107 @@
+package br.com.projeto.departamento.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.projeto.departamento.DTO.FuncionarioDTO;
+import br.com.projeto.departamento.model.Funcionario;
+import br.com.projeto.departamento.service.FuncionarioService;
+
+@RestController
+
+public class FuncionarioController {
+
+	
+	
+	@Autowired
+	private FuncionarioService funcionarioService;
+	
+	
+	@GetMapping(value = "{codigo}")
+	public FuncionarioDTO listar(@PathVariable Integer codigo) {
+					
+		return funcionarioService.listar(codigo);
+			
+	}
+	
+	@GetMapping(value = "/")
+	public ModelAndView index() {
+		
+		ModelAndView mv = new ModelAndView("index");
+		
+		
+		return mv;
+	}
+	
+	@GetMapping(value = "/novoFuncionario")
+	public ModelAndView novo() {
+		
+		ModelAndView mv = new ModelAndView("novoFuncionario");
+		mv.addObject("funcionario", new Funcionario());
+		
+		return mv;
+	}
+	
+	@PostMapping(value = "/salvarFuncionario")
+	public ModelAndView novo(@Valid Funcionario funcionario) {
+		
+		try {
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("funcionario", funcionario);
+			funcionarioService.inserir(funcionario);			
+			return mv;
+			
+		} catch (Exception e) {
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("msg", "Erro ao inserir funcionario!");
+			return mv;
+		}
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	@GetMapping(value = "/pesquisar")
+	public ModelAndView pesquisa() {
+		
+		ModelAndView mv = new ModelAndView("pesquisa");
+		
+		
+		return mv;
+	}
+	
+	@PostMapping(value = "/pesquisarPorCodigo")
+	public ModelAndView lista(@RequestParam("codigo") Integer codigo) {
+		
+		ModelAndView mv = new ModelAndView("listaFuncionarios");
+		mv.addObject("funcionarios", funcionarioService.listar(codigo));
+		mv.addObject("funcionario", new Funcionario());
+		
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

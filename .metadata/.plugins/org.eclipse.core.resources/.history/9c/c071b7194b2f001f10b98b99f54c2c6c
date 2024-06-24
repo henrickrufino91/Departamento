@@ -1,0 +1,56 @@
+package br.com.projeto.departamento.service;
+
+
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.projeto.departamento.model.Cargo;
+import br.com.projeto.departamento.repository.CargoRepository;
+
+
+@Service
+public class CargoService {
+
+	@Autowired
+	private CargoRepository cargoRepository;
+	
+	
+	
+	
+	public Cargo inserir(Cargo cargo) {
+		
+		return cargoRepository.save(cargo);
+	}
+	
+	public List<Cargo> listarCargos(){
+		
+		return cargoRepository.findAll();
+	}
+	
+	public Funcionario listarPorId(Integer codigo) {
+		
+		return funcionarioRepository.findById(codigo).get();
+	}
+	
+	
+	
+	public void remover(Funcionario funcionario) {
+		
+		funcionarioRepository.delete(funcionario);
+	}
+	
+	
+	public FuncionarioDTO listar(Integer codigo) {
+		
+		Funcionario funcionario = funcionarioRepository.getReferenceById(codigo) ;
+		
+		FuncionarioDTO dto = new FuncionarioDTO(funcionario);
+		
+		return dto;
+	}
+	
+	
+}

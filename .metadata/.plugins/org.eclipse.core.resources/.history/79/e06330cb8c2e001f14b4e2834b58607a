@@ -1,0 +1,31 @@
+package br.com.projeto.departamento.DTO;
+
+import java.time.LocalDate;
+
+public class FuncionarioDTO {
+
+	
+	private Integer codFuncionario;
+	
+	
+	private String nomeFuncionario;
+	
+	
+	private LocalDate dataNascimento;
+	
+	
+	private String nomeCargo;
+	
+	private Double salarioCargo;
+	
+	
+	private String nomeDepartamento;
+	
+	
+	
+	
+	
+	
+	
+	
+}

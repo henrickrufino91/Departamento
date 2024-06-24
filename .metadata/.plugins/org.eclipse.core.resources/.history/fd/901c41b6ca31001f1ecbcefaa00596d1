@@ -1,0 +1,21 @@
+package br.com.projeto.departamento.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class UsuarioService {
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

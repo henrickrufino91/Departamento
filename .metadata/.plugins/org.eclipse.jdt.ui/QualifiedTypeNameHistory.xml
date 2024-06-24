@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="jakarta.persistence.Entity"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.GeneratedValue"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.OneToMany"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="br.com.projeto.departamento.repository.FuncionarioRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
+    <fullyQualifiedTypeName name="br.com.projeto.departamento.service.FuncionarioService"/>
+    <fullyQualifiedTypeName name="org.springframework.web.service.annotation.GetExchange"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="br.com.projeto.departamento.DTO.FuncionarioDTO"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="javax.validation.Valid"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="br.com.projeto.departamento.repository.CargoRepository"/>
+    <fullyQualifiedTypeName name="br.com.projeto.departamento.model.Cargo"/>
+    <fullyQualifiedTypeName name="br.com.projeto.departamento.repository.DepartamentoRepository"/>
+    <fullyQualifiedTypeName name="br.com.projeto.departamento.service.CargoService"/>
+    <fullyQualifiedTypeName name="br.com.projeto.departamento.service.DepartamentoService"/>
+    <fullyQualifiedTypeName name="br.com.projeto.departamento.model.Departamento"/>
+    <fullyQualifiedTypeName name="br.com.projeto.departamento.model.Funcionario"/>
+</qualifiedTypeNameHistroy>

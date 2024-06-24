@@ -1,0 +1,117 @@
+package br.com.projeto.departamento.DTO;
+
+import java.time.LocalDate;
+
+import br.com.projeto.departamento.model.Cargo;
+import br.com.projeto.departamento.model.Departamento;
+import br.com.projeto.departamento.model.Funcionario;
+
+public class FuncionarioDTO {
+
+	
+	private Integer codFuncionario;
+	
+	
+	private String nomeFuncionario;
+	
+	
+	private LocalDate dataNascimento;
+	
+	
+	private Cargo cargo;
+		
+	private Departamento departamento;
+
+
+	public FuncionarioDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public FuncionarioDTO(Integer codFuncionario, String nomeFuncionario, LocalDate dataNascimento, String nomeCargo,
+			Double salarioCargo, String nomeDepartamento) {
+		super();
+		this.codFuncionario = codFuncionario;
+		this.nomeFuncionario = nomeFuncionario;
+		this.dataNascimento = dataNascimento;
+		this.nomeCargo = nomeCargo;
+		this.salarioCargo = salarioCargo;
+		this.nomeDepartamento = nomeDepartamento;
+	}
+	
+	
+	public FuncionarioDTO(Funcionario funcionario) {
+		
+		this.codFuncionario = funcionario.getCodFuncionario();
+		this.nomeFuncionario = funcionario.getNomeFuncionario();
+		this.dataNascimento = funcionario.getDataNascimento();
+		this.cargo = funcionario.getCargo();
+		this.departamento = funcionario.getCargo().getDepartamento();
+		this.salarioCargo = funcionario.getCargo().getSalarioCargo();
+		this.nomeDepartamento = funcionario.getCargo().getDepartamento().getNomeDepartamento();
+		
+	}
+
+
+	public Integer getCodFuncionario() {
+		return codFuncionario;
+	}
+
+
+	public void setCodFuncionario(Integer codFuncionario) {
+		this.codFuncionario = codFuncionario;
+	}
+
+
+	public String getNomeFuncionario() {
+		return nomeFuncionario;
+	}
+
+
+	public void setNomeFuncionario(String nomeFuncionario) {
+		this.nomeFuncionario = nomeFuncionario;
+	}
+
+
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
+	}
+
+
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+
+	public String getNomeCargo() {
+		return nomeCargo;
+	}
+
+
+	public void setNomeCargo(String nomeCargo) {
+		this.nomeCargo = nomeCargo;
+	}
+
+
+	public Double getSalarioCargo() {
+		return salarioCargo;
+	}
+
+
+	public void setSalarioCargo(Double salarioCargo) {
+		this.salarioCargo = salarioCargo;
+	}
+
+
+	public String getNomeDepartamento() {
+		return nomeDepartamento;
+	}
+
+
+	public void setNomeDepartamento(String nomeDepartamento) {
+		this.nomeDepartamento = nomeDepartamento;
+	}
+	
+		
+}

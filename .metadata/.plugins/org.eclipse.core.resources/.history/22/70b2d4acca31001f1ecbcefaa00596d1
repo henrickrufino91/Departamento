@@ -1,0 +1,5 @@
+package br.com.projeto.departamento.service;
+
+public class UsuarioService {
+
+}

@@ -1,0 +1,121 @@
+package br.com.projeto.departamento.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import org.springframework.web.bind.annotation.PostMapping;
+
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.projeto.departamento.model.Departamento;
+import br.com.projeto.departamento.service.CargoService;
+import br.com.projeto.departamento.service.DepartamentoService;
+
+
+
+@RestController
+
+public class DepartamentoController {
+
+	
+	
+	@Autowired
+	private DepartamentoService departamentoService;
+	
+	
+	
+	@GetMapping(value = "/novoDepartamento")
+	public ModelAndView novo() {
+		
+		ModelAndView mv = new ModelAndView("novoDepartamento");
+		mv.addObject("departamento", new Departamento());
+				
+		return mv;
+	}
+	
+	@PostMapping(value = "/salvarFuncionario")
+	public ModelAndView novo(@Valid Funcionario funcionario) {
+		
+		try {
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("funcionario", funcionario);
+			funcionarioService.inserir(funcionario);			
+			return mv;
+			
+		} catch (Exception e) {
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("msg", "Erro ao inserir funcionario!");
+			return mv;
+		}
+		
+	}
+	
+	
+	@GetMapping("/removerFuncionario")
+    public ModelAndView remover(@RequestParam Integer codigo){
+        
+		ModelAndView mv = new ModelAndView();
+		
+		Funcionario funcionario = funcionarioService.listarPorId(codigo);
+		funcionarioService.remover(funcionario);
+		
+        return mv;
+    }
+	
+	
+	@GetMapping("/editarFuncionario")
+    public ModelAndView editar(@RequestParam Integer codigo){
+        
+        ModelAndView mv = new ModelAndView("editarFuncionario");
+    
+        Funcionario funcionario = funcionarioService.listarPorId(codigo);
+        mv.addObject("funcionario",  funcionario);
+        mv.addObject("carg",  cargoService.listarCargos());
+       
+        return mv;
+   
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@GetMapping(value = "/pesquisar")
+	public ModelAndView pesquisa() {
+		
+		ModelAndView mv = new ModelAndView("pesquisa");
+		
+		
+		return mv;
+	}
+	
+	@PostMapping(value = "/pesquisarPorCodigo")
+	public ModelAndView lista(@RequestParam("codigo") Integer codigo) {
+		
+		ModelAndView mv = new ModelAndView("listaFuncionarios");
+		mv.addObject("funcionarios", funcionarioService.listar(codigo));
+		mv.addObject("funcionario", new Funcionario());
+		
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

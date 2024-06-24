@@ -1,0 +1,114 @@
+package br.com.projeto.departamento.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import org.springframework.web.bind.annotation.PostMapping;
+
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.projeto.departamento.model.Cargo;
+import br.com.projeto.departamento.model.Departamento;
+import br.com.projeto.departamento.service.CargoService;
+import br.com.projeto.departamento.service.DepartamentoService;
+
+
+@RestController
+
+public class CargoController {
+
+	
+	
+	@Autowired
+	private DepartamentoService departamentoService;
+	
+	@Autowired
+	private CargoService cargoService;
+	
+	
+	@GetMapping(value = "/novoCargo")
+	public ModelAndView novo() {
+		
+		ModelAndView mv = new ModelAndView("novoCargo");
+		mv.addObject("cargo", new Cargo());
+		mv.addObject("dpto", departamentoService.listarDepartamentos());
+		
+		return mv;
+	}
+	
+	@PostMapping(value = "/salvarCargo")
+	public ModelAndView novo(@Valid Cargo cargo) {
+		
+		try {
+			
+			ModelAndView mv = new ModelAndView("redirect:/novoCargo");
+			mv.addObject("cargo", cargo);
+			cargoService.inserir(cargo);			
+			return mv;
+			
+		} catch (Exception e) {
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("msg", "Erro ao inserir cargo!");
+			return mv;
+		}
+		
+	}
+	
+	
+	@GetMapping("/removerCargo")
+    public ModelAndView remover(@RequestParam Integer codigo){
+        
+		ModelAndView mv = new ModelAndView("redirect:/listarCargos");
+		
+		Cargo cargo = cargoService.listarPorId(codigo);
+		cargoService.remover(cargo);
+		
+        return mv;
+    }
+	
+	
+	@GetMapping("/editarCargo")
+    public ModelAndView editar(@RequestParam Integer codigo){
+        
+        ModelAndView mv = new ModelAndView("editarCargo");
+    
+        Cargo cargo = cargoService.listarPorId(codigo);
+        mv.addObject("cargo",  cargo);
+        mv.addObject("dpto",  departamentoService.listarDepartamentos());
+       
+        return mv;
+   
+    }
+	
+	
+	@GetMapping("/listarCargos")
+    public ModelAndView listar(){
+        
+        ModelAndView mv = new ModelAndView("listarCargos");
+        
+        mv.addObject("cargos",  cargoService.listarCargos());
+        mv.addObject("departamentos",  departamentoService.listarDepartamentos());
+        mv.addObject("cargo",  new Cargo());
+        
+        return mv;
+   
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	
+}

@@ -1,0 +1,78 @@
+package br.com.projeto.departamento.DTO;
+
+import java.time.LocalDate;
+
+import br.com.projeto.departamento.model.Funcionario;
+
+public class FuncionarioDTO {
+
+	
+	private Integer codFuncionario;
+	
+	
+	private String nomeFuncionario;
+	
+	
+	private LocalDate dataNascimento;
+	
+	
+	private String nomeCargo;
+	
+	private Double salarioCargo;
+	
+	
+	private String nomeDepartamento;
+
+
+	public FuncionarioDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public FuncionarioDTO(Integer codFuncionario, String nomeFuncionario, LocalDate dataNascimento, String nomeCargo,
+			Double salarioCargo, String nomeDepartamento) {
+		super();
+		this.codFuncionario = codFuncionario;
+		this.nomeFuncionario = nomeFuncionario;
+		this.dataNascimento = dataNascimento;
+		this.nomeCargo = nomeCargo;
+		this.salarioCargo = salarioCargo;
+		this.nomeDepartamento = nomeDepartamento;
+	}
+	
+	
+	public FuncionarioDTO(Funcionario funcionario) {
+		
+		this.codFuncionario = funcionario.getCodFuncionario();
+		this.nomeFuncionario = funcionario.getNomeFuncionario();
+		this.dataNascimento = funcionario.getDataNascimento();
+		this.nomeCargo = funcionario.getCargo().getNomeCargo();
+		this.salarioCargo = funcionario.getCargo().getSalarioCargo();
+		this.nomeDepartamento = funcionario.getCargo().getDepartamento().getNomeDepartamento();
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
